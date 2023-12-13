@@ -6,15 +6,19 @@ require("dotenv").config();
 
 
 const api = require("./routes/api");
+const authentication = require("./routes/authentication");
+
 
 const app = express();
 
 app.use(express.json());
 
 app.use("/api", api);
+app.use("/authentication", authentication);
+
 
 app.use((error, req, res, next) => {
-  console.log(error.statusCode);
+  console.log(error);
   const status = error.statusCode || 500;
   const message = error.message;
   res.status(status).json({ message: message });
