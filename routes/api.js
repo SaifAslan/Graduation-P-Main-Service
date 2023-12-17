@@ -23,6 +23,9 @@ const {
   addToFavorites,
   deleteAddressById,
   updateOrderStatus,
+  getProductsByCategory,
+  createCategory,
+  getCategories,
 } = require("../controllers/api");
 
 router.get(
@@ -33,6 +36,9 @@ router.get(
 
 // GET /articles/:id
 router.get("/products/:id", getProduct);
+
+router.get('/products/category/:category', getProductsByCategory);
+
 
 router.put(
   "/updateProductImage",
@@ -64,16 +70,18 @@ router.get('/address/:addressId', getAddressById);
 
 router.post('/checkCoupon', checkCoupon);
 
-router.get('/favourites/:userId', getFavoritesByUserId);
+router.get('/favorites/:userId', getFavoritesByUserId);
 
-router.post('/favourites/add', addToFavorites);
+router.post('/favorites/add', addToFavorites);
 
 // Define a route to remove a product from favorites
-router.post('/favourites/remove', removeFromFavorites);
+router.post('/favorites/remove', removeFromFavorites);
 
 router.delete('/address/:addressId', deleteAddressById);
 
+router.get('/category', getCategories);
 
+router.post('/category', createCategory);
 
 
 module.exports = router;
